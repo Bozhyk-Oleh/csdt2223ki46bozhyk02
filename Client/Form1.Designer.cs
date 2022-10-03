@@ -48,9 +48,9 @@
             // sendbutton
             // 
             this.sendbutton.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.sendbutton.Location = new System.Drawing.Point(633, 118);
+            this.sendbutton.Location = new System.Drawing.Point(621, 172);
             this.sendbutton.Name = "sendbutton";
-            this.sendbutton.Size = new System.Drawing.Size(125, 72);
+            this.sendbutton.Size = new System.Drawing.Size(137, 44);
             this.sendbutton.TabIndex = 0;
             this.sendbutton.Text = "SEND";
             this.sendbutton.UseVisualStyleBackColor = true;
@@ -58,11 +58,10 @@
             // 
             // SendtextBox
             // 
-            this.SendtextBox.Font = new System.Drawing.Font("Calibri", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.SendtextBox.Location = new System.Drawing.Point(67, 118);
-            this.SendtextBox.Multiline = true;
+            this.SendtextBox.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.SendtextBox.Location = new System.Drawing.Point(67, 172);
             this.SendtextBox.Name = "SendtextBox";
-            this.SendtextBox.Size = new System.Drawing.Size(505, 72);
+            this.SendtextBox.Size = new System.Drawing.Size(505, 44);
             this.SendtextBox.TabIndex = 1;
             this.SendtextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SendtextBox_KeyDown);
             // 
@@ -89,7 +88,7 @@
             // 
             this.Sendmessagelabel.AutoSize = true;
             this.Sendmessagelabel.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.Sendmessagelabel.Location = new System.Drawing.Point(62, 87);
+            this.Sendmessagelabel.Location = new System.Drawing.Point(62, 139);
             this.Sendmessagelabel.Name = "Sendmessagelabel";
             this.Sendmessagelabel.Size = new System.Drawing.Size(147, 28);
             this.Sendmessagelabel.TabIndex = 4;
