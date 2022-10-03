@@ -41,7 +41,7 @@ namespace Client
         private void myserialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
             recv_glob = DateTime.Now;
-            mcu_message = myserialPort.ReadExisting();
+            mcu_message = myserialPort.ReadLine();
             this.Invoke(new EventHandler(dispalytext));
         }
 

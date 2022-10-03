@@ -5,6 +5,7 @@ int choices;
 byte responseNOB, SLAVE_ID = 8; ;
 
 void setup() {
+  wdt_disable;
   Wire.begin();        // join i2c bus (address optional for master)
   pinMode(LED_BUILTIN, OUTPUT);  
   wdt_enable (WDTO_2S);
@@ -14,7 +15,8 @@ void loop() {
     digitalWrite(LED_BUILTIN, HIGH); // sets the digital pin 13 on
     delay(500);                      // waits for a  half second
     digitalWrite(LED_BUILTIN, LOW);  // sets the digital pin 13 off
-  
+    wdt_reset();
+
   	choices = 1;
   	Wire.beginTransmission(SLAVE_ID);  // Transmit to device number 8 
     Wire.write(choices);             // Sends value byte
