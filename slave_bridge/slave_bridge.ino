@@ -5,6 +5,8 @@
 String str;
 byte choices;
 byte response = 0;
+// this variable doesnt allow to read uart buffer second time
+// its helpfull when uart buffer is bigger than 30
 bool max_uart = 0;
 
 //invoked when request treeger actived.
