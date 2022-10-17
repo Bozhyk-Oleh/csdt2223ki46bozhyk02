@@ -16,6 +16,7 @@ namespace Client
 
         static DateTime recv_glob = DateTime.Now;
         string mcu_message = string.Empty;
+        bool Autoscroll = false;
         public Form1()
         {
             InitializeComponent();
@@ -25,9 +26,17 @@ namespace Client
         {
             if (myserialPort.IsOpen)
             {
-                DateTime daterecv = DateTime.Now;
-                myserialPort.Write(SendtextBox.Text);
-                CommunicationtextBox.Text += daterecv + "(sended): " + SendtextBox.Text + Environment.NewLine;
+                if (SendtextBox.Text.Length <= 30)
+                {
+                    DateTime daterecv = DateTime.Now;
+                    myserialPort.Write(SendtextBox.Text);
+                    CommunicationtextBox.Text += daterecv + "(sended): " + SendtextBox.Text + Environment.NewLine;
+
+                }
+                else
+                {
+                    MessageBox.Show("Message must be less than 31 characters");
+                }
 
             }
             else
@@ -36,7 +45,6 @@ namespace Client
             }
             SendtextBox.Text = string.Empty;
         }
-
 
         private void myserialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -100,6 +108,28 @@ namespace Client
             if(e.KeyCode == Keys.Enter)
             {
                 sendbutton.PerformClick();
+            }
+        }
+
+        private void ToggleAutoscroll_Click(object sender, EventArgs e)
+        {
+            Autoscroll = !Autoscroll;
+            if (Autoscroll)
+            {
+                ToggleAutoscroll.BackColor = Color.Aqua;
+            }
+            else
+            {
+                ToggleAutoscroll.BackColor = Color.Transparent;
+            }
+        }
+
+        private void CommunicationtextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (Autoscroll)
+            {
+                CommunicationtextBox.SelectionStart = CommunicationtextBox.Text.Length;
+                CommunicationtextBox.ScrollToCaret();
             }
         }
     }

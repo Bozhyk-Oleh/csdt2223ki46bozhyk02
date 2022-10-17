@@ -5,6 +5,7 @@
 String str;
 byte choices;
 byte response = 0;
+bool max_uart = 0;
 
 //invoked when request treeger actived.
 //Send data requered by master 
@@ -28,6 +29,8 @@ void requestEvent()
 void receiveEvent(int i)
 {
   choices = Wire.read();
+  if(choices == 2)
+    max_uart = 1;
      if(choices == 3){
         String responseStr = "";
     	byte j = 0;
@@ -64,7 +67,11 @@ void loop() {
     	str = "";
         if(response == 0){
         while(Serial.available() > 0){
+          delay(50);
           response = Serial.available();
+          if(response > 30){
+           response = 30;
+          }
           break;
         }
       }
@@ -73,13 +80,15 @@ void loop() {
     
     case 2 :
     {
-       while(Serial.available() > 0){
+       int k = response;
+       while(Serial.available() > 0 && k > 0 && max_uart == 1 ){
              char c = Serial.read();
              str += c;
+         	 k--;
       }
+      max_uart = 0;
     }
       break;
   }
-    delay(100);
-}
 
+}

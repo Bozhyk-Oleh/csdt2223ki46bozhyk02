@@ -38,6 +38,7 @@
             this.COMcomboBox = new System.Windows.Forms.ComboBox();
             this.openCOM = new System.Windows.Forms.Button();
             this.closeCOM = new System.Windows.Forms.Button();
+            this.ToggleAutoscroll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // myserialPort
@@ -71,8 +72,10 @@
             this.CommunicationtextBox.Location = new System.Drawing.Point(67, 260);
             this.CommunicationtextBox.Multiline = true;
             this.CommunicationtextBox.Name = "CommunicationtextBox";
+            this.CommunicationtextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.CommunicationtextBox.Size = new System.Drawing.Size(691, 199);
             this.CommunicationtextBox.TabIndex = 2;
+            this.CommunicationtextBox.TextChanged += new System.EventHandler(this.CommunicationtextBox_TextChanged);
             // 
             // СommunicationBoxLabel
             // 
@@ -126,11 +129,22 @@
             this.closeCOM.UseVisualStyleBackColor = true;
             this.closeCOM.Click += new System.EventHandler(this.closeCOM_Click);
             // 
+            // ToggleAutoscroll
+            // 
+            this.ToggleAutoscroll.Location = new System.Drawing.Point(297, 229);
+            this.ToggleAutoscroll.Name = "ToggleAutoscroll";
+            this.ToggleAutoscroll.Size = new System.Drawing.Size(88, 27);
+            this.ToggleAutoscroll.TabIndex = 8;
+            this.ToggleAutoscroll.Text = "Autoscroll";
+            this.ToggleAutoscroll.UseVisualStyleBackColor = true;
+            this.ToggleAutoscroll.Click += new System.EventHandler(this.ToggleAutoscroll_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 486);
+            this.Controls.Add(this.ToggleAutoscroll);
             this.Controls.Add(this.closeCOM);
             this.Controls.Add(this.openCOM);
             this.Controls.Add(this.COMcomboBox);
@@ -158,6 +172,7 @@
         private System.Windows.Forms.ComboBox COMcomboBox;
         private System.Windows.Forms.Button openCOM;
         private System.Windows.Forms.Button closeCOM;
+        private System.Windows.Forms.Button ToggleAutoscroll;
     }
 }
 
