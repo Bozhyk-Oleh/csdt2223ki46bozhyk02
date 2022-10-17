@@ -16,6 +16,7 @@ jobs:
        uses: actions/setup-dotnet@v3
        with:
          dotnet-version: 3.0.x
+     - run: ls -la
      - name: Build
        run: dotnet build 
        working-directory: Client
