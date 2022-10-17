@@ -15,8 +15,7 @@ jobs:
      - name: Setup .NET
        uses: actions/setup-dotnet@v3
        with:
-          dotnet-version: 3.0.x
-          working-directory: Client/
+          dotnet-version: 3.0.103
      - run: ls -la
      - name: Restore dependencies
        run: dotnet restore
