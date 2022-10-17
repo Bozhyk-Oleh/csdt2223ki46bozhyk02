@@ -22,5 +22,5 @@ jobs:
        working-directory: Client/
      - name: Build
        run: dotnet build --no-restore
-       working-directory: Client
+       working-directory: Client/
 
