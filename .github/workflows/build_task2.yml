@@ -13,7 +13,7 @@ jobs:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
      - uses: actions/checkout@v2
      - name: Setup .NET
-       uses: actions/setup-dotnet@v2
+       uses: actions/setup-dotnet@v1
        with:
          dotnet-version: 5.0.x
      - name: Build
