@@ -1,6 +1,6 @@
 # csdt2223ki46bozhyk02
 Subject: CSDT
-
+try to tigger ci
 #### Task 2 - Create UART<->i-face schema (FEF):
 
 1. Create a simple schema SW(client) <-> UART <-> HW(bridge) <-> HW i-fase
