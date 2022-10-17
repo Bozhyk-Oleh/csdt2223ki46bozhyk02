@@ -19,7 +19,7 @@ jobs:
      - run: ls -la
      - name: Restore dependencies
        run: dotnet restore
-       working-directory: csdt2223ki46bozhyk02/Client
+       working-directory: Client/Client.csproj
      - name: Build
        run: dotnet build --no-restore
        working-directory: Client
