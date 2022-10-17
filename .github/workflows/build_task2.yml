@@ -3,7 +3,7 @@ name: build_task2
 on:
 
   push:
-    branches: ["feature/develop/task2", "develop"]
+    branches: ["feature/develop/task2"]
 
 
 jobs:
