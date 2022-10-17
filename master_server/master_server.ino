@@ -41,7 +41,7 @@ void setup() {
 
 void loop() {
     digitalWrite(LED_BUILTIN, HIGH); // sets the digital pin 13 on
-    delay(100);                      // waits for a  half second
+    delay(100);                      // waits for a  0,1 second
     digitalWrite(LED_BUILTIN, LOW);  // sets the digital pin 13 off
     wdt_reset();
 
