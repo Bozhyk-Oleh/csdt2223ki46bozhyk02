@@ -1,6 +1,8 @@
 name: build_task2
 
 on:
+  pull_request:
+    branches: ["feature/develop/task2"]
   push:
     branches: ["feature/develop/task2"]
 
