@@ -5,7 +5,7 @@ on: [workflow_dispatch]
 jobs:
   build:
 
-    runs-on: microsoft-latest
+    runs-on: ubuntu-latest
 
     steps:
      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -21,6 +21,6 @@ jobs:
        run: dotnet restore
        working-directory: Client/
      - name: Build
-       run: dotnet build --no-restore
+       run: dotnet build 
        working-directory: Client/
 
