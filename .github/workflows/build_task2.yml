@@ -13,14 +13,7 @@ jobs:
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
      - uses: actions/checkout@v3
      - name: Setup .NET
-       uses: actions/setup-dotnet@v3
-       with:
-          dotnet-version: 3.0.x
-     - run: ls 
-     - name: Restore dependencies
-       run: dotnet restore
-       working-directory: Client/
+     - uses: actions/setup-msbuil@v1
      - name: Build
-       run: dotnet build 
-       working-directory: Client/
+       run: msbuild Client.sln 
 
