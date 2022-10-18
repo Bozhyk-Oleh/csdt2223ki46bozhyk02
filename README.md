@@ -1,6 +1,8 @@
 # csdt2223ki46bozhyk02
 Subject: CSDT
-try to tigger ci
+
+[![build_task2](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml/badge.svg)](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml)
+
 #### Task 2 - Create UART<->i-face schema (FEF):
 
 1. Create a simple schema SW(client) <-> UART <-> HW(bridge) <-> HW i-fase
