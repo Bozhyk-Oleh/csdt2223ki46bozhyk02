@@ -18,5 +18,10 @@ jobs:
      - name: Build
        run:  msbuild  Client.sln
        working-directory: Client/
+     - name: Upload build
+       uses: actions/upload-artifact@v3
+       with:
+        name: task2_Bozhyk-Oleh_ki_46
+        path: Client\bin\Debug\Client.exe
 
 
