@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO.Ports;
+using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace Client
 {
@@ -15,9 +17,14 @@ namespace Client
         static DateTime recv_glob = DateTime.Now;
         string mcu_message = string.Empty;
         bool Autoscroll = false;
+
+        MySqlConnection mySqlConnection;
+        string mycommandsql = string.Empty;
+        string myConnectionString = "Database=test; Data Source=192.168.0.103;User Id=root;Password=gahava01";
         public Form1()
         {
             InitializeComponent();
+            mySqlConnection = new MySqlConnection(myConnectionString);
         }
 
         private void sendbutton_Click(object sender, EventArgs e)
@@ -26,10 +33,29 @@ namespace Client
             {
                 if (SendtextBox.Text.Length <= 30)
                 {
-                    DateTime daterecv = DateTime.Now;
+                    mySqlConnection.Open();
+                    if (mySqlConnection.Ping())
+                    {
+                        DateTime datesent = DateTime.Now;
                     myserialPort.Write(SendtextBox.Text);
-                    CommunicationtextBox.Text += daterecv + "(sended): " + SendtextBox.Text + Environment.NewLine;
+                    CommunicationtextBox.Text += datesent + "(sended): " + SendtextBox.Text + Environment.NewLine;
+                    
+                    mycommandsql = "INSERT INTO test.data (datain, timein) " +
+                   "VALUES ('" + SendtextBox.Text + "'," +
+                   " '" + datesent.Year + "-" + datesent.Month + "-" + datesent.Day + " " + datesent.TimeOfDay + "');";
 
+                    
+                   
+                        // mySqlConnection.Open();
+                        MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
+                        commandsql.ExecuteNonQuery();
+                        mySqlConnection.Close();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Can't open db");
+                    }
                 }
                 else
                 {
@@ -54,6 +80,22 @@ namespace Client
         private void dispalytext(object sender, EventArgs e)
         {
             CommunicationtextBox.Text += recv_glob + "(received): " + mcu_message + Environment.NewLine;
+            int id_data;
+            string mySelectQuery = "SELECT max(id_data) FROM test.data;";
+            mySqlConnection.Open();
+            MySqlDataReader myReader;
+            MySqlCommand readsql = new MySqlCommand(mySelectQuery, mySqlConnection);
+            myReader = readsql.ExecuteReader();
+            myReader.Read();
+            id_data = myReader.GetInt16(0);
+            myReader.Close();
+            mycommandsql = "UPDATE test.`data` SET dataout = '" + mcu_message + "'," +
+             " timeout = '" + recv_glob.Year + "-" + recv_glob.Month + "-" + recv_glob.Day + " " + recv_glob.TimeOfDay + "' " +
+             "WHERE (id_data = '" + id_data + "');";
+
+            MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
+            commandsql.ExecuteNonQuery();
+            mySqlConnection.Close();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)

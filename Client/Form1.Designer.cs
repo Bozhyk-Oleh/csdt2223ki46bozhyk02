@@ -154,7 +154,7 @@
             this.Controls.Add(this.SendtextBox);
             this.Controls.Add(this.sendbutton);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Client app";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
