@@ -1,6 +1,17 @@
 # csdt2223ki46bozhyk02
 Subject: CSDT
 
+[![build_task2](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml/badge.svg)](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml)
+
+#### Task 2 - Create UART<->i-face schema (FEF):
+
+1. Create a simple schema SW(client) <-> UART <-> HW(bridge) <-> HW i-fase
+<-> HW(server).
+NOTE: that SW(client) is NOT a terminal or other downloaded SW. It is SW
+developed by students.
+2. The client should send a message through the bridge to the server. The server
+should modify the message and send it back to the client through the bridge.
+3. Required steps
 
 #### Task 1 - Initiate GIT repository (BEF):
 
