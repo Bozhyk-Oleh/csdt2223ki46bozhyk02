@@ -19,6 +19,7 @@ jobs:
        uses: NuGet/setup-nuget@v1.1.1
      - name: Restore Nuget packages
        run: nuget restore Client.sln
+       working-directory: Client/
      - name: Build
        run:  msbuild  Client.sln
        working-directory: Client/
