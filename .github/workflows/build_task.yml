@@ -27,4 +27,4 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
         name: task3_Bozhyk-Oleh_ki_46
-        path: Client\bin\Debug\Client.exe
+        path: Client\bin\Debug
