@@ -1,4 +1,4 @@
-name: build_task2
+name: build_task3
 
 on: [workflow_dispatch]
 
@@ -21,5 +21,5 @@ jobs:
      - name: Upload build
        uses: actions/upload-artifact@v3
        with:
-        name: task2_Bozhyk-Oleh_ki_46
+        name: task3_Bozhyk-Oleh_ki_46
         path: Client\bin\Debug\Client.exe
