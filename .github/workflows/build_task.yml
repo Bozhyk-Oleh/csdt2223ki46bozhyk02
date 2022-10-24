@@ -12,17 +12,21 @@ jobs:
      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+     
      - uses: actions/checkout@v3
      - name: Setup .NET
+     
        uses: microsoft/setup-msbuild@v1
      - name: Setup NuGet
        uses: NuGet/setup-nuget@v1.1.1
+       
      - name: Restore Nuget packages
        run: nuget restore Client.sln
        working-directory: Client/
-     - name: Build
-       run:  msbuild  Client.sln
-       working-directory: Client/
+       
+     - name: Build script
+       run:  build.sh
+       
      - name: Upload build
        uses: actions/upload-artifact@v3
        with:
