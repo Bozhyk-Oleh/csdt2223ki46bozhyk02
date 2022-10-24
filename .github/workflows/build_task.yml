@@ -25,7 +25,7 @@ jobs:
        working-directory: Client/
        
      - name: Build script
-       run:  build.sh
+       run:  Build.sh
        
      - name: Upload build
        uses: actions/upload-artifact@v3
