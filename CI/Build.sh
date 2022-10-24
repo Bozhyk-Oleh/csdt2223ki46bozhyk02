@@ -1,1 +1,1 @@
-msbuild.exe Client.sln
+msbuild.exe ./Client/Client.sln
