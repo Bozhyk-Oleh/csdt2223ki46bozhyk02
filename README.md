@@ -1,16 +1,6 @@
 # csdt2223ki46bozhyk02
 Subject: CSDT
 
-#### Task 4. Implement data driven approach and DB (FEF):
-
-1. SW(client) should store input and output messages, process time and other data
-in MySQL DB.
-2. Create SQL script to create DB.
-3. Create a config file with data driven format from table#1 to store all parameters
-required for SW(client): (UART, HW i-face parameters, DB communication
-string…)
-4. Required steps.
-
 #### Task 3. Create pipelines/actions for SW(client) (FEF):
 
 1. Create YML file with next features:
