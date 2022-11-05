@@ -1,26 +1,7 @@
 # csdt2223ki46bozhyk02
 Subject: CSDT
 
-
-#### Task 4. Implement data driven approach and DB (FEF):
-1. SW(client) should store input and output messages, process time and other data
-in MySQL DB.
-2. Create SQL script to create DB.
-3. Create a config file with data driven format from table#1 to store all parameters
-required for SW(client): (UART, HW i-face parameters, DB communication
-string…)
-4. Required steps.
-
-#### Task 3. Create pipelines/actions for SW(client) (FEF):
-1. Create YML file with next features:
-build all binaries (create scripts in folder ci/ if need);
-run tests;
-create artifacts with binaries and test reports;
-2. Commit changes to feature/develop/<task number>;
-3. Create pull request with name <task number> and submit author as reviewer;
-4. After the reviewer approved – merge request into develop branch.
-Acceptance criteria:
-∙ The link to passed pipelines/actions;
+[![build_task2](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml/badge.svg)](https://github.com/Bozhyk-Oleh/csdt2223ki46bozhyk02/actions/workflows/build_task2.yml)
 
 #### Task 2 - Create UART<->i-face schema (FEF):
 

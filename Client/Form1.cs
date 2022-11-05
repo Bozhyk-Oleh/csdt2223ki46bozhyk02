@@ -20,7 +20,7 @@ namespace Client
 
         MySqlConnection mySqlConnection;
         string mycommandsql = string.Empty;
-        string myConnectionString = "Database=test; Data Source=192.168.0.103;User Id=root;Password=gahava01";
+        string myConnectionString = "Database=task4_db_bozhyk_oleh_46; Data Source=localhost;User Id=root;Password=";
         public Form1()
         {
             InitializeComponent();
@@ -40,9 +40,9 @@ namespace Client
                     myserialPort.Write(SendtextBox.Text);
                     CommunicationtextBox.Text += datesent + "(sended): " + SendtextBox.Text + Environment.NewLine;
                     
-                    mycommandsql = "INSERT INTO test.data (datain, timein) " +
-                   "VALUES ('" + SendtextBox.Text + "'," +
-                   " '" + datesent.Year + "-" + datesent.Month + "-" + datesent.Day + " " + datesent.TimeOfDay + "');";
+                    mycommandsql = "INSERT INTO task4_db_bozhyk_oleh_46.data (datain, timein) " +
+                    "VALUES ('" + SendtextBox.Text + "'," +
+                    " '" + datesent.Year + "-" + datesent.Month + "-" + datesent.Day + " " + datesent.TimeOfDay + "');";
 
                     
                    
@@ -81,7 +81,7 @@ namespace Client
         {
             CommunicationtextBox.Text += recv_glob + "(received): " + mcu_message + Environment.NewLine;
             int id_data;
-            string mySelectQuery = "SELECT max(id_data) FROM test.data;";
+            string mySelectQuery = "SELECT max(id_data) FROM task4_db_bozhyk_oleh_46.data;";
             mySqlConnection.Open();
             MySqlDataReader myReader;
             MySqlCommand readsql = new MySqlCommand(mySelectQuery, mySqlConnection);
@@ -89,7 +89,7 @@ namespace Client
             myReader.Read();
             id_data = myReader.GetInt16(0);
             myReader.Close();
-            mycommandsql = "UPDATE test.`data` SET dataout = '" + mcu_message + "'," +
+            mycommandsql = "UPDATE task4_db_bozhyk_oleh_46.data SET dataout = '" + mcu_message + "'," +
              " timeout = '" + recv_glob.Year + "-" + recv_glob.Month + "-" + recv_glob.Day + " " + recv_glob.TimeOfDay + "' " +
              "WHERE (id_data = '" + id_data + "');";
 
