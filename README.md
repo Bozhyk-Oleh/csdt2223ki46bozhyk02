@@ -21,7 +21,6 @@ create artifacts with binaries and test reports;
 3. Create pull request with name <task number> and submit author as reviewer;
 4. After the reviewer approved – merge request into develop branch.
 
-
 #### Task 2 - Create UART<->i-face schema (FEF):
 
 1. Create a simple schema SW(client) <-> UART <-> HW(bridge) <-> HW i-fase
