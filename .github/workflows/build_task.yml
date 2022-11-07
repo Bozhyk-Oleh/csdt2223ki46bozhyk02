@@ -20,10 +20,6 @@ jobs:
      - name: Setup NuGet
        uses: NuGet/setup-nuget@v1.1.1
        
-     - name: Restore Nuget packages
-       run: nuget restore Client.sln
-       working-directory: Client/
-       
      - name: Build script
        run:  sh CI/Build.sh
        
