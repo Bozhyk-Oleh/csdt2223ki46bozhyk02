@@ -19,9 +19,17 @@ jobs:
        uses: microsoft/setup-msbuild@v1
      - name: Setup NuGet
        uses: NuGet/setup-nuget@v1.1.1
-     - name: Build and test script 
+       
+     - name: Restore Nuget packages
+       run: nuget restore Client.sln
+       working-directory: Client/
+       
+     - name: Build script
        run:  sh CI/Build.sh
-   
+            
+     - name: Test script
+       run:  sh CI/Test.sh
+  
      - name: Upload build
        uses: actions/upload-artifact@v3
        with:
