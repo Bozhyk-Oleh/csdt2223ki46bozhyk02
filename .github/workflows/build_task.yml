@@ -19,8 +19,6 @@ jobs:
        uses: microsoft/setup-msbuild@v1
      - name: Setup NuGet
        uses: NuGet/setup-nuget@v1.1.1
-     - name: Run a one-line script
-       run:  '& "$(vswhere -property installationPath)\Common7\IDE\MSTest.exe" /help'
      - name: Build script
        run:  sh CI/Build.sh
        
