@@ -8,6 +8,8 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
+using System.Diagnostics.Tracing;
 
 namespace Client
 {
@@ -20,46 +22,54 @@ namespace Client
 
         MySqlConnection mySqlConnection;
         string mycommandsql = string.Empty;
-        string myConnectionString = "Database=task4_db_bozhyk_oleh_46; Data Source=localhost;User Id=root;Password=";
+        CheckInput checkinput = new CheckInput();
+        readonly string myConnectionString = "Database=task4_db_bozhyk_oleh_46; Data Source=localhost;User Id=root;Password=";
         public Form1()
         {
             InitializeComponent();
             mySqlConnection = new MySqlConnection(myConnectionString);
         }
 
+
         private void sendbutton_Click(object sender, EventArgs e)
         {
             if (myserialPort.IsOpen)
             {
-                if (SendtextBox.Text.Length <= 30)
+                DateTime datesent = DateTime.Now;
+
+                string message = checkinput.checkmessage(SendtextBox.Text);
+
+                if (message != null)
                 {
-                    mySqlConnection.Open();
-                    if (mySqlConnection.Ping())
+                    if (String.Equals(message, SendtextBox.Text))
                     {
-                        DateTime datesent = DateTime.Now;
-                    myserialPort.Write(SendtextBox.Text);
-                    CommunicationtextBox.Text += datesent + "(sended): " + SendtextBox.Text + Environment.NewLine;
-                    
-                    mycommandsql = "INSERT INTO task4_db_bozhyk_oleh_46.data (datain, timein) " +
-                    "VALUES ('" + SendtextBox.Text + "'," +
-                    " '" + datesent.Year + "-" + datesent.Month + "-" + datesent.Day + " " + datesent.TimeOfDay + "');";
+                        myserialPort.Write(message);
+                        mySqlConnection.Open();
+                        if (mySqlConnection.Ping())
+                        {
+                            CommunicationtextBox.Text += datesent + "(sended): " + SendtextBox.Text + Environment.NewLine;
 
-                    
-                   
-                        // mySqlConnection.Open();
-                        MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
-                        commandsql.ExecuteNonQuery();
-                        mySqlConnection.Close();
+                            mycommandsql = "INSERT INTO task4_db_bozhyk_oleh_46.data (datain, timein) " +
+                            "VALUES ('" + SendtextBox.Text + "'," +
+                            " '" + datesent.Year + "-" + datesent.Month + "-" + datesent.Day + " " + datesent.TimeOfDay + "');";
 
+
+
+                            // mySqlConnection.Open();
+                            MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
+                            commandsql.ExecuteNonQuery();
+                            mySqlConnection.Close();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Can't open db");
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("Can't open db");
+                        MessageBox.Show(message);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Message must be less than 31 characters");
                 }
 
             }
@@ -67,8 +77,9 @@ namespace Client
             {
                 MessageBox.Show("COM port wasn't opened");
             }
-            SendtextBox.Text = string.Empty;
+                SendtextBox.Text = string.Empty;
         }
+           
 
         private void myserialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
@@ -80,22 +91,26 @@ namespace Client
         private void dispalytext(object sender, EventArgs e)
         {
             CommunicationtextBox.Text += recv_glob + "(received): " + mcu_message + Environment.NewLine;
-            int id_data;
-            string mySelectQuery = "SELECT max(id_data) FROM task4_db_bozhyk_oleh_46.data;";
-            mySqlConnection.Open();
-            MySqlDataReader myReader;
-            MySqlCommand readsql = new MySqlCommand(mySelectQuery, mySqlConnection);
-            myReader = readsql.ExecuteReader();
-            myReader.Read();
-            id_data = myReader.GetInt16(0);
-            myReader.Close();
-            mycommandsql = "UPDATE task4_db_bozhyk_oleh_46.data SET dataout = '" + mcu_message + "'," +
-             " timeout = '" + recv_glob.Year + "-" + recv_glob.Month + "-" + recv_glob.Day + " " + recv_glob.TimeOfDay + "' " +
-             "WHERE (id_data = '" + id_data + "');";
+            if (!mcu_message.Contains("No connection with server")
+              && !mcu_message.Contains("Lost connection with serve"))
+            {
+                int id_data;
+                string mySelectQuery = "SELECT max(id_data) FROM task4_db_bozhyk_oleh_46.data;";
+                mySqlConnection.Open();
+                MySqlDataReader myReader;
+                MySqlCommand readsql = new MySqlCommand(mySelectQuery, mySqlConnection);
+                myReader = readsql.ExecuteReader();
+                myReader.Read();
+                id_data = myReader.GetInt16(0);
+                myReader.Close();
+                mycommandsql = "UPDATE task4_db_bozhyk_oleh_46.data SET dataout = '" + mcu_message + "'," +
+                 " timeout = '" + recv_glob.Year + "-" + recv_glob.Month + "-" + recv_glob.Day + " " + recv_glob.TimeOfDay + "' " +
+                 "WHERE (id_data = '" + id_data + "');";
 
-            MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
-            commandsql.ExecuteNonQuery();
-            mySqlConnection.Close();
+                MySqlCommand commandsql = new MySqlCommand(mycommandsql, mySqlConnection);
+                commandsql.ExecuteNonQuery();
+                mySqlConnection.Close();
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -171,6 +186,11 @@ namespace Client
                 CommunicationtextBox.SelectionStart = CommunicationtextBox.Text.Length;
                 CommunicationtextBox.ScrollToCaret();
             }
+        }
+
+        private void CleanButton_Click(object sender, EventArgs e)
+        {
+            CommunicationtextBox.Text = String.Empty;
         }
     }
 }

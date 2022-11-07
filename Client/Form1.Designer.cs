@@ -39,6 +39,7 @@
             this.openCOM = new System.Windows.Forms.Button();
             this.closeCOM = new System.Windows.Forms.Button();
             this.ToggleAutoscroll = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // myserialPort
@@ -131,19 +132,32 @@
             // 
             // ToggleAutoscroll
             // 
+            this.ToggleAutoscroll.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ToggleAutoscroll.Location = new System.Drawing.Point(297, 229);
             this.ToggleAutoscroll.Name = "ToggleAutoscroll";
-            this.ToggleAutoscroll.Size = new System.Drawing.Size(88, 27);
+            this.ToggleAutoscroll.Size = new System.Drawing.Size(97, 27);
             this.ToggleAutoscroll.TabIndex = 8;
             this.ToggleAutoscroll.Text = "Autoscroll";
             this.ToggleAutoscroll.UseVisualStyleBackColor = true;
             this.ToggleAutoscroll.Click += new System.EventHandler(this.ToggleAutoscroll_Click);
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(669, 229);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(89, 29);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "clean";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.CleanButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 486);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ToggleAutoscroll);
             this.Controls.Add(this.closeCOM);
             this.Controls.Add(this.openCOM);
@@ -173,6 +187,7 @@
         private System.Windows.Forms.Button openCOM;
         private System.Windows.Forms.Button closeCOM;
         private System.Windows.Forms.Button ToggleAutoscroll;
+        private System.Windows.Forms.Button button1;
     }
 }
 
