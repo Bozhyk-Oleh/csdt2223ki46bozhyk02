@@ -1,3 +1,3 @@
 nuget restore ./Client/Client.sln
-msbuild.exe ./Client/Client.sln
-dotnet test ./Client/Client.sln
+MSBuild.exe ./Client/Client.sln
+MSTest.exe ./Client.UnitTest/bin/Debug/Client.UnitTest.dll
