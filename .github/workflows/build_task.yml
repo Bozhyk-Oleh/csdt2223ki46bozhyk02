@@ -21,7 +21,8 @@ jobs:
        uses: NuGet/setup-nuget@v1.1.1
      - name: Build script
        run:  sh CI/Build.sh
-       
+     - name: test  
+       run: MSTest.exe /help
      - name: Upload build
        uses: actions/upload-artifact@v3
        with:
