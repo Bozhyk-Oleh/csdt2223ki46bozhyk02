@@ -1,2 +1,2 @@
-nuget restore ./ClientClient.sln
+nuget restore ./Client/Client.sln
 msbuild.exe ./Client/Client.sln
