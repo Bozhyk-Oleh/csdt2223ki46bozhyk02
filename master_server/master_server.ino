@@ -30,6 +30,7 @@ String stage_2(){
 void setup() {
   wdt_disable;
   Wire.begin();        // join i2c bus (address optional for master)
+  Serial.begin(9600);
   pinMode(LED_BUILTIN, OUTPUT);  
   wdt_enable (WDTO_4S);
   
@@ -41,9 +42,12 @@ void setup() {
 
 void loop() {
     digitalWrite(LED_BUILTIN, HIGH); // sets the digital pin 13 on
-    delay(100);                      // waits for a  0,1 second
+    delay(100);                      // waits for a  half second
     digitalWrite(LED_BUILTIN, LOW);  // sets the digital pin 13 off
     wdt_reset();
+  if(Serial){
+     Serial.println("Wrong device connected");
+  }
 
   	choices = 1;
     Transmit_choice();
