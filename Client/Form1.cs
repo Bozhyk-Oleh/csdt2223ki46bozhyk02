@@ -10,6 +10,7 @@ using MySql.Data.MySqlClient;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Tracing;
+using System.Configuration;
 
 namespace Client
 {
@@ -23,7 +24,7 @@ namespace Client
         MySqlConnection mySqlConnection;
         string mycommandsql = string.Empty;
         CheckInput checkinput = new CheckInput();
-        readonly string myConnectionString = "Database=task4_db_bozhyk_oleh_46; Data Source=localhost;User Id=root;Password=";
+        readonly string myConnectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
         public Form1()
         {
             InitializeComponent();
