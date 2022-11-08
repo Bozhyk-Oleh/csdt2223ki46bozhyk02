@@ -22,8 +22,10 @@ jobs:
      - name: Test script
        run:  sh CI/Test.sh
   
+
      - name: Upload build
        uses: actions/upload-artifact@v3
        with:
         name: task3_Bozhyk-Oleh_ki_46
         path: Client\bin\Debug
+
