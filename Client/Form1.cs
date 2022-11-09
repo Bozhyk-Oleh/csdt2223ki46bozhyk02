@@ -11,12 +11,14 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Diagnostics.Tracing;
 using System.Configuration;
+using System.IO;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Client
 {
     public partial class Form1 : Form
     {
-
         static DateTime recv_glob = DateTime.Now;
         string mcu_message = string.Empty;
         bool Autoscroll = false;
@@ -24,11 +26,23 @@ namespace Client
         MySqlConnection mySqlConnection;
         string mycommandsql = string.Empty;
         CheckInput checkinput = new CheckInput();
-        readonly string myConnectionString = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+        string myConnectionString = string.Empty;
         public Form1()
         {
+            string jsonfile = "important.json";
+            JObject obj = null;
+            JsonSerializer jsonSerializer = new JsonSerializer();
+            StreamReader reader = new StreamReader(jsonfile); 
+            JsonReader jsonReader = new JsonTextReader(reader);
+            obj = jsonSerializer.Deserialize(jsonReader) as JObject;
+            jsonReader.Close();
+            reader.Close();
+            sqlConnct connct = new sqlConnct();
+            connct = obj.ToObject(typeof(sqlConnct)) as sqlConnct;
+            myConnectionString = connct.ConnectionString;
             InitializeComponent();
             mySqlConnection = new MySqlConnection(myConnectionString);
+          
         }
 
 
@@ -193,5 +207,9 @@ namespace Client
         {
             CommunicationtextBox.Text = String.Empty;
         }
+    }
+    public class sqlConnct
+    {
+        public string ConnectionString;
     }
 }
