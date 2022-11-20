@@ -1,0 +1,9 @@
+CREATE SCHEMA `task4_db_bozhyk_oleh_46` ;
+
+CREATE TABLE `task4_db_bozhyk_oleh_46`.`data` (
+  `id_data` INT NOT NULL AUTO_INCREMENT,
+  `datain` VARCHAR(45) NULL,
+  `timein` DATETIME NULL,
+  `dataout` VARCHAR(45) NULL,
+  `timeout` DATETIME NULL,
+  PRIMARY KEY (`id_data`));
