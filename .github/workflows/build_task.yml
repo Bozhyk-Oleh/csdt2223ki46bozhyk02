@@ -28,14 +28,15 @@ jobs:
        run:  sh CI/Test.sh
   
 
-     - name: Upload build
+     - name: Upload build task 3
        uses: actions/upload-artifact@v3
        with:
         name: task3_Bozhyk-Oleh_ki_46
         path: Client\bin\Debug
         
-     - name: Upload WebClient release
+     - name: Upload build task 5
        uses: actions/upload-artifact@v3
        with:
+          name: task5_Bozhyk-Oleh_ki_46
           path: WebClient\bin\Debug
 
