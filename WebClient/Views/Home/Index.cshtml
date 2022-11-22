@@ -8,11 +8,6 @@
 
 <div>
 	<form method="post">
-		<p>
-			<label>Text: </label>
-			<input type="text" name="text" />
-			@ViewData["result"]
-		</p>
 		@if (Ports.Count() > 0)
 		{
 			<p>
@@ -25,8 +20,14 @@
 			</p>
 		}
 		<p>
+			<label>Text: </label>
+			<input type="text" name="text" style="width:calc(100% - 50px)"  />
+			@ViewData["result"]
+		</p>
+
+		<p>
 			<input type="submit" value="Send" />
-			<input type="submit" value="refresh" />
+			<input type="submit" value="Refresh" />
 		</p>
 	</form>
 </div>
