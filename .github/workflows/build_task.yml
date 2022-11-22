@@ -19,7 +19,7 @@ jobs:
      - name: Setup .NET Core SDK
        uses: actions/setup-dotnet@v3
        with:
-        dotnet-version: '5.0'
+        dotnet-version: '6.0'
         
      - name: Build script
        run:  sh CI/Build.sh
@@ -33,4 +33,9 @@ jobs:
        with:
         name: task3_Bozhyk-Oleh_ki_46
         path: Client\bin\Debug
+        
+     - name: Upload WebClient release
+       uses: actions/upload-artifact@v3
+       with:
+          path: WebClient\bin\Debug
 
