@@ -1,0 +1,43 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+	IEnumerable<string> Ports = SerialPort.GetPortNames();
+	IEnumerable<string> Logs = (IEnumerable<string>)ViewData["log"];
+}
+@using System.Collections.Generic
+@using System.IO.Ports
+
+<div>
+	<form method="post">
+		@if (Ports.Count() > 0)
+		{
+			<p>
+				<select name="port">
+					@foreach (string item in Ports)
+					{
+						<option value="@item">@item</option>
+					}
+				</select>
+			</p>
+		}
+		<p>
+			<label>Text: </label>
+			<input type="text" name="text" style="width:calc(100% - 50px)"  />
+			@ViewData["result"]
+		</p>
+
+		<p>
+			<input type="submit" value="Send" />
+			<input type="submit" value="Refresh" />
+		</p>
+	</form>
+</div>
+<div>
+	@if (Logs is not null)
+	{
+		@foreach (string item in Logs)
+		{
+			@item
+			<br>
+		}
+	}
+</div>
