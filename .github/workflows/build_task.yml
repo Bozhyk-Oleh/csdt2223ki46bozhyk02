@@ -23,9 +23,15 @@ jobs:
        run:  sh CI/Test.sh
   
 
-     - name: Upload build
+     - name: Upload build task 4
        uses: actions/upload-artifact@v3
        with:
         name: CourseWork_Bozhyk-Oleh_ki_46
         path: Client\bin\Debug
+        
+     - name: Upload build CourseWork
+       uses: actions/upload-artifact@v3
+       with:
+        name: CourseWork_Bozhyk-Oleh_ki_46
+        path: CourseWork\Sea Battle\Sea Battle\bin\Debug
 
