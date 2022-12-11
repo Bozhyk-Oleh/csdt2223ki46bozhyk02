@@ -44,5 +44,5 @@ jobs:
        uses: actions/upload-artifact@v3
        with:
         name: CourseWork_Bozhyk-Oleh_ki_46
-        path: SeaBattle\Sea Battle\bin\Debug
+        path: CourseWork\SeaBattle\Sea Battle\bin\Debug
 
