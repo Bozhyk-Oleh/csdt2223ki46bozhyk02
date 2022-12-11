@@ -1,4 +1,5 @@
 cd CourseWork
-cd Sea Battle
+cd SeaBattle
+dir
 dotnet restore
 dotnet build Sea Battle.sln
