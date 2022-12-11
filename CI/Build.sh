@@ -1,3 +1,10 @@
 nuget restore ./Client/Client.sln
-nuget restore ./CourseWork/Sea Battle.sln
 MSBuild.exe ./Client/Client.sln
+
+cd WebClient
+dotnet restore
+dotnet build 
+
+cd CourseWork
+dotnet restore
+dotnet build 
