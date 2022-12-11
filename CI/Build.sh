@@ -1,3 +1,3 @@
-cd CourseWork/Sea\ Battle
+cd CourseWork
 dotnet restore
-dotnet build Sea Battle
+dotnet build Sea Battle.sln
