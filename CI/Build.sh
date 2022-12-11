@@ -5,6 +5,6 @@ cd WebClient
 dotnet restore
 dotnet build 
 
-cd CourseWork
+cd CourseWork\Sea Battle
 dotnet restore
 dotnet build 
